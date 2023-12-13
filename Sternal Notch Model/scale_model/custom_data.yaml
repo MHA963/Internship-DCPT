@@ -1,0 +1,6 @@
+names:
+- Sternal Notch
+nc: 1
+path:  C:\Users/student/Desktop/images/scale_marker/dataset
+train: C:/Users/student/Desktop/images/scale_marker/dataset/train
+val: C:/Users/student/Desktop/images/scale_marker/dataset/val
