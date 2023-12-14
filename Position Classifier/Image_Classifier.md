@@ -3,6 +3,21 @@
 ## Overview
 This project is an image classifier using Yolo-v8. In this project we will utilize the Ultralytics YOLO model to process and classify images into different categories (e.g., 'armsUp', 'armsDown', 'Side'). The processed images are then organized and saved in the specified output folders. The script also calculates accuracy based on the provided labels
 
+## Table of content
+- [Requirements](#requirements)
+- [Getting to know the dataset](#getting-to-know-the-dataset)
+- [YOLO Image Processing Script](#yolo-image-processing-script)
+- [Post-training / review](#post-training--review)
+  - [Model performance metrics](#model-performance-metrics)
+- [Conclusion](#conclusion)
+- [Post-training / test on the dataset](#post-training--test-on-the-dataset)
+- [Results](#results)
+  - [Plots](#plots)
+- [Sorting and renaming the images](#sorting-and-renaming-the-images)
+  - [Overview](#overview)
+  - [Functions](#functions)
+
+
 ## Requirements
 - Python 3.x
 - Required Libraries:
@@ -104,8 +119,7 @@ The ```/weights``` folder contains the the custom trained models.
 ##### Confusion matrix
 ![confusion](./Rapport/confusion_matrix.png)
 
-##### Training batch 
-![confusion](./Rapport/val_batch_classifier.jpg)
+
 
 We can always do a small test using ```model_test.py``` where the results of the classification be saved in ```/classifier/runs/classify/predict```
 This script utilizes the Ultralytics YOLO model to make predictions on images within a specified folder. It finds image files with specific extensions in the given folder and its subfolders, then makes predictions using the YOLO model on each image, printing the class probabilities for each prediction. Additionally, there is a commented-out function (plot_boxes) intended to plot bounding boxes, confidences, and class IDs, which can be uncommented for visualization.
@@ -140,7 +154,9 @@ It also work on the last 2 folders, i checked.
 ### Plots
 In this section we are going to visualise the important results of our classification model. lets take a look :
 
-#### plottttttsssssssssssss
+![Alt text](./Rapport/result_test.png)
+
+we can see the results my model has accomplished in terms of sepreating the patients images according to their posture, we can see that aarhus dataset has a bigger margin for error, but lets not forget that Aarhus dataset is the largest and most diverse betwen the rest of the datasets. So in general, i think of these as good results for the model.
 
 # Sorting and renaming the images 
 
@@ -173,9 +189,17 @@ Update the ```input_dir, output_dir, info_file, and hospital_structure``` variab
 
 Using the model is now easy, i created 2 scripts inside the Sorting folder, **export.py** and **export.ipynb**. those two scripts are optiontional in how we wanna approach this, the export.py script is mainly handling the hospitals dataset one by one, just by changing the ```input_dir,  output_dir, hospital_structure and info_file``` paths. This will make it easier to debugg, and examine outlires and change the code accordingly.
 
-So after running the script 
-## Plots 
+Now we need to observe the results exported on the other side, i suggest that we go through single hospital dataset, to understand the method needed for renaming in image_extraction.py.
+there will be outliers that doesnt fit the structure, and should be done manually, all outliers should be located in the Other folder inside each hospital dataset.
 
+### Plots 
 
+The following plots shows a snippet of the results of the sorting algorithm, and the images renamed.
 
+![Alt text](./Rapport/renaming_results.png)
 
+And the next plots are for the image count for the following hospitals. 
+
+![Alt text](./Rapport/Other_count.png)
+
+We can see ther results for our sorting and renaming algorithm, Aalborg dataset is the best in naming structures, thus the zero erros in renaming, some images other hospitals like Aarhus, Odense and Dresden need to be checked manually adn renamed either before or after the running the script.
